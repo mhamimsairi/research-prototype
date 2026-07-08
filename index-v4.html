@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>間 — A Hybrid Semantic-AI Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EEE1; --paper-deep:#ECE5D3;
+    --ink:#242019; --ink-soft:#5B564C; --ink-faint:#9B9484;
+    --line:#D8D0BC;
+    --clay:#A65D3F; --clay-soft:#F0DFD3;
+    --indigo:#3E4F63; --indigo-soft:#E1E6E9;
+    --serif:'Cormorant Garamond', serif; --sans:'Work Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-weight:300; -webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--clay); color:var(--paper);}
+  a{color:inherit;}
+  .mark{font-family:var(--serif); font-style:italic; color:var(--ink-faint); font-size:15px;}
+  ::-webkit-scrollbar{width:8px;} ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+  @media (max-width:760px){ .railnav{display:none !important;} main{padding-left:28px !important;} }
+</style>
+</head>
+<body>
+
+<nav class="railnav" aria-label="Section index" style="position:fixed; left:0; top:0; bottom:0; width:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; z-index:30;">
+  <div style="position:relative; height:70vh; width:1px; background:var(--line);">
+    <a href="#sec-cover" class="raillink" data-id="sec-cover" style="position:absolute; left:-9px; top:0%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-ch1" class="raillink" data-id="sec-ch1" style="position:absolute; left:-9px; top:16.6%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-ch2" class="raillink" data-id="sec-ch2" style="position:absolute; left:-9px; top:33.3%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-ch3" class="raillink" data-id="sec-ch3" style="position:absolute; left:-9px; top:50%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-ch4" class="raillink" data-id="sec-ch4" style="position:absolute; left:-9px; top:66.6%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-demo" class="raillink" data-id="sec-demo" style="position:absolute; left:-9px; top:83.3%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+    <a href="#sec-sched" class="raillink" data-id="sec-sched" style="position:absolute; left:-9px; top:100%; width:19px; height:19px; border-radius:50%; background:var(--paper); border:1px solid var(--ink-faint); display:flex; align-items:center; justify-content:center;"></a>
+  </div>
+</nav>
+
+<main style="max-width:640px; margin:0 auto; padding:0 32px 160px 96px;">
+
+  <!-- COVER -->
+  <section id="sec-cover" style="min-height:92vh; display:flex; flex-direction:column; justify-content:center;">
+    <div class="mark" style="margin-bottom:36px;">研究計画書 · GS73938 · 二〇二五年十月</div>
+    <h1 style="font-family:var(--serif); font-weight:500; font-style:italic; font-size:clamp(30px,4.4vw,46px); line-height:1.35; margin:0 0 40px; color:var(--ink);">A Hybrid Semantic-AI Framework Integrating Knowledge Graphs and Large Language Models for Citizen-Centric Digital Government Services in Malaysia</h1>
+    <p style="font-size:16.5px; line-height:1.9; color:var(--ink-soft); max-width:520px; margin:0 0 44px;">An answer a citizen can trust must be correct against the governing rule, traceable to its source, and accountable when it is wrong. No deployed AI in Malaysian digital government holds all three at once. This is the space between them, made architecture.</p>
+    <div style="width:60px; height:1px; background:var(--clay); margin-bottom:32px;"></div>
+    <div style="font-size:14px; color:var(--ink-faint); line-height:1.9;">Hamim Sairi<br>Faculty of Computer Science and Information Technology, Universiti Putra Malaysia<br>Supervisor — Dr. Novia Admodisastro</div>
+  </section>
+
+  <!-- CH1 -->
+  <section id="sec-ch1" style="padding:110px 0 40px;">
+    <div class="mark">一 · Introduction</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 32px; color:var(--ink);">The layer inherits the fragmentation it sits on</h2>
+    <p style="font-size:16px; line-height:1.9; color:var(--ink-soft); margin:0 0 24px;">Malaysian digital government promises citizen-centricity — MyDIGITAL, AI-RMAP, NAIAP 2026–2030, MD2030 all commit to it — yet services remain organised around agencies: LHDN, SOCSO, JPN, JPJ operate as separate systems behind a common portal. The AI layered on top is predominantly chatbots that retrieve text but cannot verify it.</p>
+    <p style="font-size:16px; line-height:1.9; color:var(--ink-soft); margin:0 0 40px; font-style:italic; font-family:var(--serif); border-left:1px solid var(--clay); padding-left:22px;">Malaysia has reached the fourth stage of digital government without resolving the third. The cost lands hardest on the B40 population, which depends most on correct answers and can least absorb a wrong one.</p>
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <div style="display:flex; gap:20px; padding:16px 0; border-top:1px solid var(--line);"><span class="mark" style="width:24px; flex:none;">A1</span><span style="font-size:14.5px; color:var(--ink-soft);">Malaysian Government Service Ontology</span></div>
+      <div style="display:flex; gap:20px; padding:16px 0; border-top:1px solid var(--line);"><span class="mark" style="width:24px; flex:none;">A2</span><span style="font-size:14.5px; color:var(--ink-soft);">Provenance-enabled knowledge graph</span></div>
+      <div style="display:flex; gap:20px; padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);"><span class="mark" style="width:24px; flex:none;">A3</span><span style="font-size:14.5px; color:var(--ink-soft);">Governance-constrained interaction model</span></div>
+    </div>
+  </section>
+
+  <!-- CH2 -->
+  <section id="sec-ch2" style="padding:90px 0 40px;">
+    <div class="mark">二 · Literature review</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 32px; color:var(--ink);">Three capabilities. No system on record holds all three.</h2>
+
+    <div style="display:flex; flex-direction:column; margin-bottom:48px;">
+      <div style="padding:20px 0; border-top:1px solid var(--line);"><div class="mark">Capability 1</div><div style="font-family:var(--serif); font-size:19px; font-weight:500; margin:5px 0 6px;">Computable eligibility</div><div style="font-size:14px; color:var(--ink-soft); line-height:1.7;">Computed against a policy rule (SHACL over profile triples), not retrieved as pre-written text (Konstantinidis et al., 2025).</div></div>
+      <div style="padding:20px 0; border-top:1px solid var(--line);"><div class="mark">Capability 2</div><div style="font-family:var(--serif); font-size:19px; font-weight:500; margin:5px 0 6px;">Proactive delivery</div><div style="font-size:14px; color:var(--ink-soft); line-height:1.7;">"No-Stop Government": a service offered before the citizen asks.</div></div>
+      <div style="padding:20px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);"><div class="mark">Capability 3</div><div style="font-family:var(--serif); font-size:19px; font-weight:500; margin:5px 0 6px;">Cross-agency chaining</div><div style="font-size:14px; color:var(--ink-soft); line-height:1.7;">Once-Only: one agency's document is valid evidence for another's process (Karunarathne et al., 2022).</div></div>
+    </div>
+
+    <div style="background:var(--paper-deep); border-radius:2px; padding:36px 8px 36px 32px; margin-bottom:48px; border-left:1px solid var(--indigo);">
+      <div class="mark" style="color:var(--indigo); margin-bottom:10px;">SHACL 與 PROV-O — never combined before</div>
+      <p style="font-size:15px; line-height:1.85; color:var(--ink-soft); max-width:480px; margin:0 0 26px;">SHACL asks whether an output conforms. PROV-O asks where it came from. Recorded together, each validation becomes a traceable act — the chain the citizen can follow back.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0; font-size:13px; color:var(--ink-soft); align-items:center;">
+        <span>source regulation</span><span style="margin:0 12px; color:var(--ink-faint);">→</span>
+        <span>LLM extraction</span><span style="margin:0 12px; color:var(--ink-faint);">→</span>
+        <span>committed triple</span><span style="margin:0 12px; color:var(--ink-faint);">→</span>
+        <span style="color:var(--clay); font-style:italic; font-family:var(--serif);">SHACL validation</span><span style="margin:0 12px; color:var(--ink-faint);">→</span>
+        <span>citizen determination</span>
+      </div>
+      <div style="font-size:12.5px; color:var(--ink-faint); margin-top:22px; line-height:1.7;">Malaysia's Data Sharing Act 2025 (Act 864): §13 permissible purpose · §15 refusal grounds → SHACL abstention shape · §21 duty to report → a query over the provenance store.</div>
+    </div>
+
+    <div class="mark" style="margin-bottom:16px;">Comparator matrix</div>
+    <div style="overflow-x:auto; margin-bottom:48px;">
+      <table style="width:100%; border-collapse:collapse; font-size:13px;">
+        <thead><tr style="border-bottom:1px solid var(--ink-faint);"><th style="text-align:left; padding:8px 6px; font-weight:400; color:var(--ink-faint);">system</th><th style="padding:8px 6px; font-weight:400; color:var(--ink-faint);">kg</th><th style="padding:8px 6px; font-weight:400; color:var(--ink-faint);">llm</th><th style="padding:8px 6px; font-weight:400; color:var(--ink-faint);">shacl</th><th style="padding:8px 6px; font-weight:400; color:var(--ink-faint);">prov-o</th><th style="padding:8px 6px; font-weight:400; color:var(--ink-faint);">my/asean</th></tr></thead>
+        <tbody style="color:var(--ink-soft);">
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:8px 6px;">Konstantinidis 2025</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--ink-faint);">✗</td><td style="text-align:center; color:var(--ink-faint);">✗</td></tr>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:8px 6px;">Papageorgiou 2025</td><td style="text-align:center;">◐</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--ink-faint);">✗</td><td style="text-align:center; color:var(--ink-faint);">✗</td><td style="text-align:center; color:var(--ink-faint);">✗</td></tr>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:8px 6px;">Giarelis 2024</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--indigo);">✓</td><td style="text-align:center; color:var(--ink-faint);">✗</td><td style="text-align:center; color:var(--ink-faint);">✗</td><td style="text-align:center; color:var(--ink-faint);">✗</td></tr>
+          <tr><td style="padding:10px 6px; font-style:italic; font-family:var(--serif); font-size:15px;">this thesis</td><td style="text-align:center; color:var(--clay);">✓</td><td style="text-align:center; color:var(--clay);">✓</td><td style="text-align:center; color:var(--clay);">✓</td><td style="text-align:center; color:var(--clay);">✓</td><td style="text-align:center; color:var(--clay);">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mark" style="margin-bottom:16px;">Five gaps</div>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; gap:20px; padding:14px 0; border-top:1px solid var(--line);"><span class="mark" style="width:20px; flex:none; color:var(--clay);">G1</span><span style="font-size:14px; color:var(--ink-soft);">Life-event navigation — no formal architecture for multi-agency pathways.</span></div>
+      <div style="display:flex; gap:20px; padding:14px 0; border-top:1px solid var(--line);"><span class="mark" style="width:20px; flex:none; color:var(--clay);">G2</span><span style="font-size:14px; color:var(--ink-soft);">Semantic governance — ontologies exist without ownership or versioning.</span></div>
+      <div style="display:flex; gap:20px; padding:14px 0; border-top:1px solid var(--line);"><span class="mark" style="width:20px; flex:none; color:var(--clay);">G3</span><span style="font-size:14px; color:var(--ink-soft);">SHACL and PROV-O never combined — blockable, but not also auditable.</span></div>
+      <div style="display:flex; gap:20px; padding:14px 0; border-top:1px solid var(--line);"><span class="mark" style="width:20px; flex:none; color:var(--clay);">G4</span><span style="font-size:14px; color:var(--ink-soft);">Principles stated but not operationalised into shapes or patterns.</span></div>
+      <div style="display:flex; gap:20px; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);"><span class="mark" style="width:20px; flex:none; color:var(--clay);">G5</span><span style="font-size:14px; color:var(--ink-soft);">Malaysian context absent from any existing framework.</span></div>
+    </div>
+  </section>
+
+  <!-- CH3 -->
+  <section id="sec-ch3" style="padding:90px 0 40px;">
+    <div class="mark">三 · Methodology</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 32px; color:var(--ink);">Six activities, in dependency order, across eight semesters</h2>
+    <p style="font-size:15px; line-height:1.85; color:var(--ink-soft); max-width:520px; margin:0 0 36px;">Design Science Research Methodology. Each objective produces and evaluates an artefact in sequence — none answered by observing an existing system (Peffers et al., 2007).</p>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--indigo);">act 1</span><span style="font-size:14.5px; color:var(--ink-soft);">Problem identification — complete.</span></div>
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--indigo);">act 2</span><span style="font-size:14.5px; color:var(--ink-soft);">Define objectives — complete.</span></div>
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--ink-faint);">act 3</span><span style="font-size:14.5px; color:var(--ink-soft);">Design and development of A1 → A2 → A3.</span></div>
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--ink-faint);">act 4</span><span style="font-size:14.5px; color:var(--ink-soft);">Demonstration — a proof of concept, two life events.</span></div>
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--ink-faint);">act 5</span><span style="font-size:14.5px; color:var(--ink-soft);">Evaluation — scenarios, baselines, expert validation.</span></div>
+      <div style="display:flex; gap:20px; padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); align-items:baseline;"><span class="mark" style="width:60px; flex:none; color:var(--ink-faint);">act 6</span><span style="font-size:14.5px; color:var(--ink-soft);">Communication — dissertation, three articles, viva.</span></div>
+    </div>
+  </section>
+
+  <!-- CH4 -->
+  <section id="sec-ch4" style="padding:90px 0 40px;">
+    <div class="mark">四 · Preliminary results</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 18px; color:var(--ink);">Ahead of schedule</h2>
+    <p style="font-size:15px; line-height:1.85; color:var(--ink-soft); max-width:520px; margin:0 0 8px;">A minimal governance-core prototype, benchmarked over a 200-query adversarial test against zero-shot and RAG baselines sharing the same generation model.</p>
+    <div style="font-family:var(--serif); font-style:italic; font-size:16px; color:var(--clay); margin-bottom:36px;">Accepted for publication — Sairi &amp; Admodisastro, AiIC 2026.</div>
+    <div id="metrics-chart"></div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="sec-demo" style="padding:90px 0 40px;">
+    <div class="mark">五 · A conversation, observed</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 32px; color:var(--ink);">The framework, questioned live</h2>
+    <p style="font-size:15px; line-height:1.85; color:var(--ink-soft); max-width:520px; margin:0 0 28px;">Every stage below is itself recorded as an act of provenance. Choose one.</p>
+
+    <div style="display:flex; gap:28px; margin-bottom:36px; flex-wrap:wrap;">
+      <button class="scn-btn" data-scn="jobloss" style="background:none; border:none; border-bottom:1px solid var(--ink-faint); font-family:var(--sans); font-size:14px; color:var(--ink-soft); padding:0 0 4px; cursor:pointer;">job loss</button>
+      <button class="scn-btn" data-scn="birth" style="background:none; border:none; border-bottom:1px solid var(--ink-faint); font-family:var(--sans); font-size:14px; color:var(--ink-soft); padding:0 0 4px; cursor:pointer;">birth registration</button>
+      <button class="scn-btn" data-scn="trap" style="background:none; border:none; border-bottom:1px solid var(--ink-faint); font-family:var(--sans); font-size:14px; color:var(--ink-soft); padding:0 0 4px; cursor:pointer;">a fabricated provision</button>
+    </div>
+
+    <blockquote id="demo-query" style="font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.6; color:var(--ink); border-left:1px solid var(--line); padding-left:24px; margin:0 0 32px; min-height:30px;">Select one of the three, above.</blockquote>
+
+    <div style="display:flex; align-items:center; gap:0; margin-bottom:34px;">
+      <div class="stage" data-i="1" style="width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; transition:background .4s;"></div>
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+      <div class="stage" data-i="2" style="width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; transition:background .4s;"></div>
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+      <div class="stage" data-i="3" style="width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; transition:background .4s;"></div>
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+      <div class="stage" data-i="4" style="width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; transition:background .4s;"></div>
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+      <div class="stage" data-i="5" style="width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; transition:background .4s;"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--ink-faint); margin-top:-24px; margin-bottom:34px;">
+      <span>parse</span><span>retrieve</span><span>generate</span><span>validate</span><span>release</span>
+    </div>
+
+    <div id="demo-result" style="display:none;">
+      <div id="demo-seal" style="display:inline-flex; align-items:center; gap:8px; font-family:var(--serif); font-style:italic; font-size:15px; margin-bottom:18px;"></div>
+      <p id="demo-answer" style="font-size:15px; line-height:1.85; color:var(--ink-soft); margin:0 0 20px; max-width:500px;"></p>
+      <div id="demo-prov" style="font-size:12px; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:14px; line-height:1.7;"></div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="sec-sched" style="padding:90px 0 60px;">
+    <div class="mark">六 · Schedule</div>
+    <h2 style="font-family:var(--serif); font-weight:500; font-size:32px; margin:14px 0 32px; color:var(--ink);">Eight semesters, October 2025 to July 2029</h2>
+    <div style="overflow-x:auto; margin-bottom:44px;">
+      <div id="gantt" style="min-width:560px;"></div>
+    </div>
+    <div class="mark" style="margin-bottom:14px;">Risk register</div>
+    <div style="display:flex; flex-direction:column;">
+      <div style="padding:16px 0; border-top:1px solid var(--line); font-size:14px; color:var(--ink-soft); line-height:1.7;">Ontology error propagating downstream — mitigated by a hard gating review: two domain specialists confirm A1 before A2 population begins.</div>
+      <div style="padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-size:14px; color:var(--ink-soft); line-height:1.7;">Data access — mitigated structurally: A2 depends only on public legal instruments.</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var GANTT_ROWS = [
+    ['Act.1 Problem identification', 'dd------'],
+    ['Act.2 Define objectives', '-d------'],
+    ['Act.3 Build A1 — ontology', '--a-----'],
+    ['Act.3 Build A2 & A3', '---a----'],
+    ['Act.4 Demonstration', '----a---'],
+    ['Act.5 Evaluation', '-----a--'],
+    ['Act.6 Communication', '------aa'],
+    ['Pub.1 Scoping review', '--p-----'],
+    ['Pub.2 Framework design', '---pp---'],
+    ['Pub.3 Evaluation results', '-----p--']
+  ];
+  var CELL_COLOR = { d:'#A65D3F', a:'#3E4F63', p:'#B7A98C', '-':'#E4DCC8' };
+  var gantt = document.getElementById('gantt');
+  var html = '<div style="display:grid; grid-template-columns:190px repeat(8,1fr); gap:3px; margin-bottom:10px;"><div></div>' +
+    [1,2,3,4,5,6,7,8].map(function(n){ return '<div style="font-family:Cormorant Garamond, serif; font-style:italic; font-size:12px; text-align:center; color:var(--ink-faint);">s'+n+'</div>'; }).join('') + '</div>';
+  GANTT_ROWS.forEach(function(row){
+    html += '<div style="display:grid; grid-template-columns:190px repeat(8,1fr); gap:3px; align-items:center; margin-bottom:6px;">';
+    html += '<div style="font-size:12.5px; color:var(--ink-soft);">'+row[0]+'</div>';
+    for (var i=0;i<8;i++){
+      var ch = row[1][i] || '-';
+      html += '<div style="height:9px; background:'+CELL_COLOR[ch]+';"></div>';
+    }
+    html += '</div>';
+  });
+  gantt.innerHTML = html;
+
+  var METRICS = [
+    { name:'Grounded Response Rate', v:[100,90.0,92.0] },
+    { name:'Mandatory Abstention Rate', v:[100,92.0,74.7] },
+    { name:'False-Premise Resistance', v:[100,100,88.3] },
+    { name:'Provenance-Gating Rate', v:[100,66.7,80.0] },
+    { name:'Abstention Accuracy', v:[100,91.5,79.0] }
+  ];
+  var COLORS = ['#A65D3F','#3E4F63','#C7BEA8'];
+  var mc = document.getElementById('metrics-chart');
+  var mhtml = '';
+  METRICS.forEach(function(m, idx){
+    mhtml += '<div style="padding:18px 0; border-top:1px solid var(--line);' + (idx === METRICS.length-1 ? 'border-bottom:1px solid var(--line);' : '') + '">';
+    mhtml += '<div style="font-size:14px; color:var(--ink-soft); margin-bottom:10px;">'+m.name+'</div>';
+    m.v.forEach(function(val, i){
+      mhtml += '<div style="display:grid; grid-template-columns:1fr 42px; gap:10px; align-items:center; margin-bottom:5px;">'+
+        '<div style="height:2px; background:var(--line); position:relative;"><div style="position:absolute; left:0; top:0; height:2px; width:'+val+'%; background:'+COLORS[i]+';"></div></div>'+
+        '<div style="font-family:Cormorant Garamond, serif; font-style:italic; font-size:13px; text-align:right; color:var(--ink-faint);">'+val+'%</div></div>';
+    });
+    mhtml += '</div>';
+  });
+  mc.innerHTML = mhtml;
+
+  var SCENARIOS = {
+    jobloss: { q: 'I have just lost my job. What am I entitled to, and what do I need to do?', abstain: false,
+      answer: 'Eligibility for SOCSO job-loss benefit and LHDN income-adjustment relief, computed against current SHACL profile shapes — both requirements are satisfied.',
+      prov: 'wasGeneratedBy shacl-validate-864 · wasDerivedFrom SOCSO-EIS-2025 §4' },
+    birth: { q: 'My child was born last week. What do I need to register, and where?', abstain: false,
+      answer: 'JPN birth registration pathway confirmed against profile triples; the child-benefit application is pre-staged under Once-Only.',
+      prov: 'wasGeneratedBy shacl-validate-864 · wasDerivedFrom JPN-BR-2020 §2' },
+    trap: { q: 'I heard there is a special one-time cash grant under Act 864 §9(b) for job-loss claimants — how do I apply?', abstain: true,
+      answer: 'No such provision exists in the governed knowledge graph. The claim fails SHACL shape validation — the system withholds an answer rather than invent one.',
+      prov: 'wasGeneratedBy shacl-abstain-864-§15 · wasDerivedFrom NULL — no matching shape' }
+  };
+
+  var btns = document.querySelectorAll('.scn-btn');
+  var stages = document.querySelectorAll('.stage');
+  var queryEl = document.getElementById('demo-query');
+  var resultEl = document.getElementById('demo-result');
+  var sealEl = document.getElementById('demo-seal');
+  var answerEl = document.getElementById('demo-answer');
+  var provEl = document.getElementById('demo-prov');
+  var demoTimer = null;
+
+  function resetStages(){ stages.forEach(function(s){ s.style.background = 'var(--line)'; }); }
+
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.style.color = 'var(--ink-soft)'; b.style.borderBottomColor = 'var(--ink-faint)'; });
+      btn.style.color = 'var(--ink)';
+      btn.style.borderBottomColor = 'var(--clay)';
+
+      if (demoTimer) clearInterval(demoTimer);
+      resetStages();
+      resultEl.style.display = 'none';
+      var scn = SCENARIOS[btn.dataset.scn];
+      queryEl.textContent = scn.q;
+
+      var i = 0;
+      demoTimer = setInterval(function(){
+        i++;
+        var stage = document.querySelector('.stage[data-i="'+i+'"]');
+        if (stage) stage.style.background = scn.abstain ? '#9B5A52' : 'var(--indigo)';
+        if (i >= 5){
+          clearInterval(demoTimer);
+          sealEl.innerHTML = scn.abstain
+            ? '<span style="color:#9B5A52;">◐</span> withheld — SHACL gate'
+            : '<span style="color:var(--indigo);">●</span> released — recorded in PROV-O';
+          answerEl.textContent = scn.answer;
+          provEl.textContent = scn.prov;
+          resultEl.style.display = 'block';
+        }
+      }, 420);
+    });
+  });
+
+  function initNav(){
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.raillink'));
+    if (!navLinks.length) return;
+    var sectionIds = navLinks.map(function(a){ return a.dataset.id; });
+    function setActive(id){
+      navLinks.forEach(function(a){
+        var on = a.dataset.id === id;
+        a.style.background = on ? 'var(--clay)' : 'var(--paper)';
+        a.style.borderColor = on ? 'var(--clay)' : 'var(--ink-faint)';
+        a.style.transform = on ? 'scale(1.25)' : 'scale(1)';
+      });
+    }
+    var ticking = false;
+    function updateActive(){
+      ticking = false;
+      var line = window.innerHeight * 0.4;
+      var currentId = sectionIds[0];
+      for (var i = 0; i < sectionIds.length; i++){
+        var el = document.getElementById(sectionIds[i]);
+        if (el && el.getBoundingClientRect().top <= line) currentId = sectionIds[i];
+      }
+      setActive(currentId);
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking){ ticking = true; requestAnimationFrame(updateActive); }
+    }, { passive:true });
+    window.addEventListener('resize', updateActive);
+    updateActive();
+  }
+  initNav();
+})();
+</script>
+</body>
+</html>
